@@ -1,0 +1,16 @@
+<div class="card h-100 bg-black border-secondary text-light">
+  {% if album.cover_url %}
+    <img src="{{ album.cover_url }}" class="card-img-top" alt="{{ album.title }} cover">
+  {% endif %}
+
+  <div class="card-body">
+    <h5 class="card-title">{{ album.title }}</h5>
+    <p class="card-text text-secondary">
+      {{ album.get_album_type_display }} &middot; {{ album.release_date|date:"M Y" }}
+    </p>
+  </div>
+
+  <div class="card-footer border-secondary">
+    <a href="#" class="btn btn-sm btn-outline-danger">Details</a>
+  </div>
+</div>

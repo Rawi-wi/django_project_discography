@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <div class="text-center py-5">
+    <h1 class="display-4 fw-bold">Discography's HomePage</h1>
+    <p class="lead text-secondary">
+      A fan-made discography for artists, songs and credits.
+    </p>
+  </div>
+
+  <div class="row g-4 justify-content-center">
+    <div class="col-12 col-md-4">
+      <div class="card h-100 bg-black border-secondary text-light text-center">
+        <div class="card-body">
+          <h5 class="card-title">Albums</h5>
+          <p class="card-text text-secondary">Browse added releases.</p>
+          <a href="#" class="btn btn-outline-danger">View albums</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="card h-100 bg-black border-secondary text-light text-center">
+        <div class="card-body">
+          <h5 class="card-title">Songs</h5>
+          <p class="card-text text-secondary">Find tracks and who made them.</p>
+          <a href="#" class="btn btn-outline-danger">View songs</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="card h-100 bg-black border-secondary text-light text-center">
+        <div class="card-body">
+          <h5 class="card-title">Members</h5>
+          <p class="card-text text-secondary">Meet the members and their credits.</p>
+          <a href="#" class="btn btn-outline-danger">View members</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
