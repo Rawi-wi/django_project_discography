@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}{% if form.instance.pk %}Edit album{% else %}Add album{% endif %}{% endblock %}
+
+{% block content %}
+  <h1 class="mb-4">{% if form.instance.pk %}Edit album{% else %}Add album{% endif %}</h1>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    {% for field in form %}
+      <div class="mb-3">
+        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}
+          <div class="form-text text-secondary">{{ field.help_text }}</div>
+        {% endif %}
+        {% for error in field.errors %}
+          <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-danger">Save</button>
+    <a href="{% url 'albums:list' %}" class="btn btn-link text-secondary">Cancel</a>
+  </form>
+{% endblock %}

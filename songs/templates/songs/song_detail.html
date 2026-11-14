@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ song.title }}{% endblock %}
+
+{% block content %}
+  <h1>{{ song.title }}</h1>
+  <p class="text-secondary">
+    Track {{ song.track_number }} on {{ song.album.title }}
+  </p>
+
+  {% if song.description %}
+    <p>{{ song.description }}</p>
+  {% endif %}
+
+  <h4 class="mt-4">Credits</h4>
+  <ul>
+    {% for member in song.members.all %}
+      <li>{{ member.stage_name }}</li>
+    {% empty %}
+      <li class="text-secondary">No members credited yet.</li>
+    {% endfor %}
+  </ul>
+
+  <div class="mt-4">
+    <a href="{% url 'songs:edit' song.pk %}" class="btn btn-outline-light">Edit</a>
+    <a href="{% url 'songs:delete' song.pk %}" class="btn btn-outline-danger">Delete</a>
+    <a href="{% url 'songs:list' %}" class="btn btn-link text-secondary">Back to songs</a>
+  </div>
+{% endblock %}

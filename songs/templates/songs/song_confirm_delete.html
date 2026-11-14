@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Delete song{% endblock %}
+
+{% block content %}
+  <h1>Delete song</h1>
+  <p>Are you sure you want to delete <strong>{{ song.title }}</strong>?</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, delete</button>
+    <a href="{% url 'songs:detail' song.pk %}" class="btn btn-link text-secondary">Cancel</a>
+  </form>
+{% endblock %}
