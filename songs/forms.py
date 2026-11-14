@@ -19,6 +19,7 @@ class SongForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control','placeholder': 'Enter the song title'}),
 
+<<<<<<< HEAD
             'album': forms.Select(attrs={'class': 'form-select'}),
 
             'track_number': forms.NumberInput(attrs={'class': 'form-control', 'min': 1, 'placeholder': 'Enter track number'}),
@@ -77,3 +78,10 @@ class SongForm(forms.ModelForm):
         return cleaned_data
 
 
+=======
+            'album': forms.NumberInput(attrs={'class': 'form-control', 'min': 1, 'placeholder': 'Position on the album title'}),
+
+            'length_in_seconds':forms.NumberInput(attrs={'class': 'form-control', 'min': 1, 'placeholder': 'e.g. 185'})
+        }
+
+>>>>>>> b0cfb207362c1492d339ac1f151bad5e5698fc87

@@ -23,6 +23,9 @@ from .views import HomePageView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('albums/', include('albums.urls')),
+<<<<<<< HEAD
     path('songs/', include('songs.urls')),
+=======
+>>>>>>> b0cfb207362c1492d339ac1f151bad5e5698fc87
     path('', HomePageView.as_view(), name='home'),
 ]

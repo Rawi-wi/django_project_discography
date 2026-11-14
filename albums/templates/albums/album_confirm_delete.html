@@ -25,6 +25,10 @@
   <form method="post">
     {% csrf_token %}
     <button type="submit" class="btn btn-danger">Yes, delete</button>
+<<<<<<< HEAD
     <a href="{% url 'albums:detail' album.pk %}" class="btn btn-link text-secondary">Cancel</a>
+=======
+    <a href="#" class="btn btn-link text-secondary">Cancel</a>
+>>>>>>> b0cfb207362c1492d339ac1f151bad5e5698fc87
   </form>
 {% endblock %}
