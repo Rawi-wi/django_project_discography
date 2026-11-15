@@ -34,6 +34,10 @@ class Song(models.Model):
         verbose_name="Credited Members",
         help_text="Tick everyone credited on this song; leave empty if unknown"
     )
+    description = models.TextField(
+    blank=True,
+    verbose_name="Description"
+    )
 
     class Meta:
         ordering = ['album', 'track_number']
