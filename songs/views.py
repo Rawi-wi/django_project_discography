@@ -1,10 +1,8 @@
-<<<<<<< HEAD
 from django.shortcuts import render, redirect, get_object_or_404
-
 from songs.forms import SongForm
 from songs.models import Song
 
-# Create your views here.
+
 
 def songs_list(request):
     songs = Song.objects.select_related('album').order_by('album','track_number')
@@ -52,8 +50,4 @@ def songs_delete(request, pk):
 
     context = {'song': song}
     return render(request, 'songs/song_confirm_delete.html', context )
-=======
 from django.shortcuts import render
-
-# Create your views here.
->>>>>>> b0cfb207362c1492d339ac1f151bad5e5698fc87

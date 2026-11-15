@@ -2,15 +2,13 @@ from django.db import models
 from albums.models import Album
 from members.models import Member
 from .validators import validate_song_length
-<<<<<<< HEAD
+
 from .validators import validate_track_numbers
-=======
->>>>>>> b0cfb207362c1492d339ac1f151bad5e5698fc87
+
 
 # Create your models here.
 
 class Song(models.Model):
-<<<<<<< HEAD
     title = models.CharField(
         max_length=200,
         verbose_name="Title"
@@ -36,13 +34,12 @@ class Song(models.Model):
         verbose_name="Credited Members",
         help_text="Tick everyone credited on this song; leave empty if unknown"
     )
-=======
+
     title = models.CharField(max_length=200, verbose_name="Title")
     album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name='songs', verbose_name="Album")
     track_number = models.PositiveIntegerField(verbose_name="Track Number", help_text="Must be unique within the album")
     length_in_seconds = models.PositiveIntegerField(validators=[validate_song_length], verbose_name="Length in Seconds", help_text="Length in seconds (e.g. 185 for 3:05)")
     credited_members = models.ManyToManyField(Member, blank=True, related_name='songs', verbose_name="Credited Members",help_text="Tick everyone credited on this song; leave empty if unknown")
->>>>>>> b0cfb207362c1492d339ac1f151bad5e5698fc87
     description = models.TextField(blank=True, verbose_name="Description")
 
     class Meta:

@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import AlbumForm
-=======
 from django.shortcuts import render
->>>>>>> b0cfb207362c1492d339ac1f151bad5e5698fc87
 
 # Create your views here.
 
@@ -12,7 +9,6 @@ from albums.models import Album
 def albums_list(request):
     albums = Album.objects.all()
     context = {'albums': albums}
-<<<<<<< HEAD
     return render(request, 'albums/album_list.html', context)
 
 def albums_detail(request, pk):
@@ -56,6 +52,3 @@ def albums_delete(request, pk):
 
     context = {'album': album}
     return render(request, 'albums/album_confirm_delete.html', context)
-=======
-    return render(request, 'albums/album_list.html', context)
->>>>>>> b0cfb207362c1492d339ac1f151bad5e5698fc87
