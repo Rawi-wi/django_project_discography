@@ -1,10 +1,7 @@
 from django.db import models
 from albums.models import Album
 from members.models import Member
-from .validators import validate_song_length
-
-from .validators import validate_track_numbers
-
+from .validators import validate_song_length, validate_track_numbers
 
 # Create your models here.
 
@@ -32,7 +29,7 @@ class Song(models.Model):
         Member, blank=True,
         related_name='songs',
         verbose_name="Credited Members",
-        help_text="Tick everyone credited on this song; leave empty if unknown"
+        help_text="Tick everyone credited on this song, leave empty if unknown"
     )
     description = models.TextField(
     blank=True,

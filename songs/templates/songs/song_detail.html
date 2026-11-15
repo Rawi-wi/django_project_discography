@@ -3,9 +3,10 @@
 
 {% block content %}
   <h1>{{ song.title }}</h1>
-  <p class="text-secondary">
-    Track {{ song.track_number }} on {{ song.album.title }}
-  </p>
+ <p class="text-secondary">
+  Track {{ song.track_number }} on {{ song.album.title }}
+  &middot; {{ song.length_in_seconds }} sec
+</p>
 
   {% if song.description %}
     <p>{{ song.description }}</p>
@@ -13,7 +14,7 @@
 
   <h4 class="mt-4">Credits</h4>
   <ul>
-    {% for member in song.members.all %}
+    {% for member in song.credited_members.all %}
       <li>{{ member.stage_name }}</li>
     {% empty %}
       <li class="text-secondary">No members credited yet.</li>
