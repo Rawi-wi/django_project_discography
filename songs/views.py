@@ -1,18 +1,38 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from songs.forms import SongForm
+from songs.forms import SongForm, SongFilterForm
 from songs.models import Song
 
-
-
 def songs_list(request):
-    songs = Song.objects.select_related('album').order_by('album','track_number')
-    context = {'songs': songs}
-    return render(request, 'songs/song_list.html', context )
+    songs = Song.objects.select_related('album').order_by('album', 'track_number')
+    form = SongFilterForm(request.GET)
+
+    if form.is_valid():
+        search = form.cleaned_data['search']
+        album = form.cleaned_data['album']
+        members = form.cleaned_data['members']
+        sort = form.cleaned_data['sort']
+
+        if search:
+            songs = songs.filter(title__icontains=search)
+
+        if album:
+            songs = songs.filter(album=album)
+
+        if members:
+            songs = songs.filter(credited_members=members)
+
+        if sort:
+            songs = songs.order_by(sort)
+
+    context = {'songs': songs, 'form': form}
+    return render(request, 'songs/song_list.html', context)
+
 
 def songs_detail(request, pk):
     song = get_object_or_404(Song, pk=pk)
     context = {'song': song}
     return render(request, 'songs/song_detail.html', context)
+
 
 def songs_create(request):
     if request.method == 'POST':
@@ -25,6 +45,7 @@ def songs_create(request):
 
     context = {'form': form}
     return render(request, 'songs/song_form.html', context)
+
 
 def songs_edit(request, pk):
     song = get_object_or_404(Song, pk=pk)
@@ -39,7 +60,8 @@ def songs_edit(request, pk):
         form = SongForm(instance=song)
 
     context = {'form': form}
-    return render(request, 'songs/song_form.html', context )
+    return render(request, 'songs/song_form.html', context)
+
 
 def songs_delete(request, pk):
     song = get_object_or_404(Song, pk=pk)
@@ -49,5 +71,7 @@ def songs_delete(request, pk):
         return redirect('songs:list')
 
     context = {'song': song}
-    return render(request, 'songs/song_confirm_delete.html', context )
-from django.shortcuts import render
+    return render(request, 'songs/song_confirm_delete.html', context)
+
+
+

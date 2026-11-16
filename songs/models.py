@@ -3,7 +3,6 @@ from albums.models import Album
 from members.models import Member
 from .validators import validate_song_length, validate_track_numbers
 
-# Create your models here.
 
 class Song(models.Model):
     title = models.CharField(
@@ -11,7 +10,9 @@ class Song(models.Model):
         verbose_name="Title"
     )
     album = models.ForeignKey(
-        Album, on_delete=models.CASCADE,
+        Album, on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
         related_name='songs',
         verbose_name="Album"
     )
@@ -32,8 +33,8 @@ class Song(models.Model):
         help_text="Tick everyone credited on this song, leave empty if unknown"
     )
     description = models.TextField(
-    blank=True,
-    verbose_name="Description"
+        blank=True,
+        verbose_name="Description"
     )
 
     class Meta:
@@ -44,4 +45,6 @@ class Song(models.Model):
         ]
 
     def __str__(self):
-        return f"{self.title} ({self.album.title})"
+        if self.album:
+            return f"{self.title}({self.album.title})"
+        return f"{self.title} (single)"

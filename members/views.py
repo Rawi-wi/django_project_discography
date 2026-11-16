@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from members.forms import MemberForm
 from members.models import Member
 
-# Create your views here.
 
 def members_list(request):
     members = Member.objects.all()

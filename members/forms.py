@@ -84,5 +84,3 @@ class MemberForm(forms.ModelForm):
                 'invalid': 'Enter a valid image URL.',
             },
         }
-
-

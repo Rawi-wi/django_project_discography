@@ -1,29 +1,37 @@
 {% extends "base.html" %}
+{% load song_extras %}
 {% block title %}{{ song.title }}{% endblock %}
 
 {% block content %}
-  <h1>{{ song.title }}</h1>
- <p class="text-secondary">
-  Track {{ song.track_number }} on {{ song.album.title }}
-  &middot; {{ song.length_in_seconds }} sec
-</p>
+    <h1>{{ song.title }}</h1>
+    <p class="text-secondary">
+        {% if song.album %}
+            Track {{ song.track_number }} on
+            <a href="{% url 'albums:detail' song.album.pk %}" class="link-light">{{ song.album.title }}</a>
+        {% else %}
+            Standalone song
+        {% endif %}
+        &middot; {{ song.length_in_seconds|duration }}
+    </p>
 
-  {% if song.description %}
-    <p>{{ song.description }}</p>
-  {% endif %}
+    <p class="{% if not song.description %}text-secondary{% endif %}">
+        {{ song.description|default:"No description yet." }}
+    </p>
 
-  <h4 class="mt-4">Credits</h4>
-  <ul>
-    {% for member in song.credited_members.all %}
-      <li>{{ member.stage_name }}</li>
-    {% empty %}
-      <li class="text-secondary">No members credited yet.</li>
-    {% endfor %}
-  </ul>
+    <h4 class="mt-4">Credits</h4>
+    <ul>
+        {% for member in song.credited_members.all %}
+            <li>
+                <a href="{% url 'members:detail' member.pk %}" class="link-light">{{ member.stage_name }}</a>
+            </li>
+        {% empty %}
+            <li class="text-secondary">No members credited yet.</li>
+        {% endfor %}
+    </ul>
 
-  <div class="mt-4">
-    <a href="{% url 'songs:edit' song.pk %}" class="btn btn-outline-light">Edit</a>
-    <a href="{% url 'songs:delete' song.pk %}" class="btn btn-outline-danger">Delete</a>
-    <a href="{% url 'songs:list' %}" class="btn btn-link text-secondary">Back to songs</a>
-  </div>
+    <div class="mt-4">
+        <a href="{% url 'songs:edit' song.pk %}" class="btn btn-outline-light">Edit</a>
+        <a href="{% url 'songs:delete' song.pk %}" class="btn btn-outline-danger">Delete</a>
+        <a href="{% url 'songs:list' %}" class="btn btn-link text-secondary">Back to songs</a>
+    </div>
 {% endblock %}

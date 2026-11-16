@@ -1,9 +1,6 @@
 from django.db import models
-
 from members.validators import validate_birthday_not_in_future, validate_stage_name
 
-
-# Create your models here.
 
 class Member(models.Model):
     stage_name = models.CharField(

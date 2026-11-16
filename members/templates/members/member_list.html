@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Members{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Members</h1>
+        <a href="{% url 'members:create' %}" class="btn btn-danger">Add member</a>
+    </div>
+
+    <div class="row g-4">
+        {% for member in members %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 bg-black border-secondary text-light">
+                    {% if member.image_url %}
+                        <img src="{{ member.image_url }}" class="card-img-top" alt="{{ member.stage_name }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ member.stage_name }}</h5>
+                        {% if member.position %}
+                            <p class="card-text text-secondary">{{ member.position }}</p>
+                        {% endif %}
+                        {% if member.bio %}
+                            <p class="card-text small">{{ member.bio|truncatewords:15 }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer border-secondary">
+                        <a href="{% url 'members:detail' member.pk %}" class="btn btn-sm btn-outline-danger">Details</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-secondary">No members yet. Add the first one!</p>
+        {% endfor %}
+    </div>
+{% endblock %}
