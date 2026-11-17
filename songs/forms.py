@@ -97,7 +97,7 @@ class SongFilterForm(forms.Form):
         max_length=100,
         label='Search',
         validators=[validate_search_length],
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Search by song title....'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Search by song title...'}),
         error_messages={
             'max_length': 'The search text is too long, please use at most 100 characters.',
         },

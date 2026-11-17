@@ -46,5 +46,5 @@ class Song(models.Model):
 
     def __str__(self):
         if self.album:
-            return f"{self.title}({self.album.title})"
+            return f"{self.title} ({self.album.title})"
         return f"{self.title} (single)"
